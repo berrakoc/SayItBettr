@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Euclid';
-    src: url('static/font/Euclid Circular A Medium.ttf') format('truetype');
+    src: url('/static/font/Euclid Circular A Medium.ttf') format('truetype');
 }
 
 * {
