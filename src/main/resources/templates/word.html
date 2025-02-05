@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/word.css" />
+    <title>Document</title>
+</head>
+
+<body>
+<div class="navbar">
+    <a href="#">SayItBettr</a>
+    <div class="navbar-icons">
+        <i class="fas fa-info-circle"></i>
+
+        <i class="fas fa-user-circle"></i>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Acknowledge</h2>
+    <div class="details">
+        <p style="color: #c4c4c4">
+            <strong>Phonetic: </strong>
+            <span style="color: #6b6a6a"> /ˈfəʊ.nɛ.tɪk/ </span>
+        </p>
+        <p style="color: #c4c4c4">
+            <strong>Meaning: </strong>
+            <span style="color: #6b6a6a">
+            To admit the existence or truth of.
+          </span>
+        </p>
+    </div>
+    <audio controls class="audio-player">
+        <source src="example.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+    <p class="record-label">Şimdi Sen Kaydet</p>
+    <div class="record-controls">
+        <button id="record">Record</button>
+        <button id="stop" disabled>Stop</button>
+    </div>
+
+    <audio style="width: 558px" id="user-audio" controls></audio>
+    <button style="margin-top: 20px" id="try-again">Try Again</button>
+    <button id="compare">Compare</button>
+    <h2 style="margin-top: 40px">Accuracy: 34%</h2>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 SayItBettr. All rights reserved.</p>
+    <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy Policy</a>
+    </div>
+</footer>
+</body>
+<script src="word.js"></script>
+</html>
