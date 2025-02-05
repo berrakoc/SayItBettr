@@ -1,0 +1,419 @@
+@font-face {
+    font-family: "Euclid";
+    src: url("/fonts/Euclid\ Circular\ A\ Medium.ttf") format("truetype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Euclid", sans-serif;
+}
+
+body {
+    font-family: "Euclid", sans-serif;
+    background-color: #31363f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #181a1b;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-icons i {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 1.2fr;
+    grid-template-rows: 1.2fr 0.9fr 0.9fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    margin-top: 20px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 1.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    width: 600px;
+    grid-template-areas:
+    "rank score"
+    "rank score"
+    "github-chart github-chart";
+    grid-area: 1 / 2 / 2 / 4;
+}
+
+
+.github-chart {
+    grid-area: github-chart;
+    width: 600px;
+    margin-left: 10px;
+    margin-top: 10px;
+
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #181a1b;
+
+    position: relative;
+    overflow-x: auto;
+}
+
+.chart-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+    margin: 0;
+}
+
+.chart {
+    margin-left: 200px;
+    display: flex;
+    gap: 5px; /* Haftalar arasında boşluk */
+    margin-top: 40px; /* Başlık için boşluk bırakıldı */
+}
+
+.week {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Günler arasında boşluk */
+}
+
+.day {
+    width: 10px;
+    height: 10px;
+    background-color: #31363f; /* Pasif günler için gri renk */
+    border-radius: 2px;
+}
+
+.day.active {
+    background-color: #28a745; /* Aktif günler için yeşil renk */
+}
+
+
+
+
+
+
+
+
+
+.rank {
+    grid-area: rank;
+    width: 280px;
+    margin-left: 10px;
+    border-radius: 30px;
+    position: relative;
+    background-color: #181a1b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+    margin: 0;
+}
+
+.rank-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #6b6a6a;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.score {
+    grid-area: score;
+    width: 300px;
+    border-radius: 30px;
+    position: relative;
+    background-color: #181a1b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+    margin: 0;
+}
+
+.score-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #6b6a6a;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+
+
+.profile {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: #181a1b;
+    width: 300px;
+    height: 340px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    margin: 0 auto;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 30px; /* Görselin en üstte konumlanması için */
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.username {
+    margin-top: 140px; /* Görselin altına boşluk bırakır */
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+    text-align: center;
+}
+
+
+
+.statistics {
+    grid-area: 2 / 2 / 3 / 4;
+    width: 600px;
+}
+
+
+
+.spesific-graph {
+    margin-top: 10px;
+    grid-area: 2 / 3 / 3 / 4;
+    width: 360px;
+    border-radius: 30px;
+    background-color: #181a1b;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: #c4c4c4;
+}
+.progress-value-s{
+    font-size: 18px;
+    color: #6b6a6a;
+
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #28a745;
+    border-radius: 5px 0 0 5px;
+}
+
+
+
+
+
+
+
+
+.general-graph {
+    grid-area: 2 / 2 / 3 / 3;
+    width: 230px;
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background-color: #181a1b;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.circle-progress {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#28a745 0% 38%, #31363f 38% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c4c4c4;
+}
+
+.progress-label {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+}
+
+
+
+
+
+
+
+
+.history {
+    grid-area: 3 / 2 / 4 / 4;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    width: 600px;
+    height: 300px;
+    border-radius: 30px;
+    background-color: #181a1b;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto; /* Kaydırma çubuğu için */
+}
+
+.history-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #c4c4c4;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.history-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Satırlar arası boşluk */
+}
+
+.history-item {
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+    color: #6b6a6a;
+    padding-bottom: 5px;
+}
+
+
+
+
+
+.footer {
+    width: 100%;
+    background-color: #181a1b;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #28a745;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #f9f9f9;
+}
