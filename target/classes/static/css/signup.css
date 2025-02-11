@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Euclid';
+    src: url('/static/font/Euclid Circular A Medium.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Euclid', sans-serif;
+}
+
+body {
+    font-family: 'Euclid', sans-serif;
+    background-color: #31363f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.card {
+    background-color: #181a1b;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+}
+
+.card h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    color: #c4c4c4;
+
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    color: #c4c4c4;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9e9e9e;
+
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    border-color: #8AB0AB;
+    outline: none;
+}
+
+.btn {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #e06678;
+}
