@@ -42,4 +42,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Hatalı mail veya şifre!");
         }
     }
+
+    @GetMapping("/current-user")
+    public ResponseEntity<User> getCurrentUser(HttpSession session) {
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        if (loggedUser != null) {
+            return ResponseEntity.ok(loggedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }
