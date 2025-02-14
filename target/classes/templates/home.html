@@ -7,12 +7,17 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
             rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/home.css" />
     <title>Document</title>
 </head>
 
 <body>
+
+
 <div class="navbar">
     <a href="#">SayItBettr</a>
     <div class="navbar-icons">
@@ -21,180 +26,37 @@
         <i class="fas fa-user-circle"></i>
     </div>
 </div>
-
+<div class="main">
 <div class="buttons-container">
     <button
             style="background-color: #77dd77"
-            onclick="handleButtonClick('easy')"
+            onclick="fetchWords(1)"
     >
         Easy
     </button>
     <button
             style="background-color: #ffff4f"
-            onclick="handleButtonClick('medium')"
+            onclick="fetchWords(2)"
     >
         Medium
     </button>
     <button
             style="background-color: #ffb3b3"
-            onclick="handleButtonClick('hard')"
+            onclick="fetchWords(3)"
     >
         Hard
     </button>
     <button
             style="background-color: #c8a2c8"
-            onclick="handleButtonClick('extreme')"
+            onclick="fetchWords(4)"
     >
         Extreme
     </button>
 </div>
 
-<div style="margin-top: 40px" class="content easy">
-    <p>ability</p>
-</div>
-<div class="content easy">
-    <p>admit</p>
-</div>
-<div class="content easy">
-    <p>approach</p>
-</div>
-<div class="content easy">
-    <p>command</p>
-</div>
-<div class="content easy">
-    <p>concern</p>
-</div>
-<div class="content easy">
-    <p>detect</p>
-</div>
-<div class="content easy">
-    <p>election</p>
-</div>
-<div class="content easy">
-    <p>habit</p>
-</div>
-<div class="content easy">
-    <p>launch</p>
-</div>
-<div class="content easy">
-    <p>reverse</p>
-</div>
-<div class="content easy">
-    <p>suspension</p>
-</div>
-<div class="content easy">
-    <p>willing</p>
-</div>
+<div style="margin-top: 50px" id="wordList"></div>
 
-<div style="margin-top: 40px" class="content medium">
-    <p>achievement</p>
-</div>
-<div class="content medium">
-    <p>admire</p>
-</div>
-<div class="content medium">
-    <p>complaint</p>
-</div>
-<div class="content medium">
-    <p>corrupt</p>
-</div>
-<div class="content medium">
-    <p>deliberately</p>
-</div>
-<div class="content medium">
-    <p>endure</p>
-</div>
-<div class="content medium">
-    <p>extention</p>
-</div>
-<div class="content medium">
-    <p>extravagant</p>
-</div>
-<div class="content medium">
-    <p>foreign</p>
-</div>
-<div class="content medium">
-    <p>horizon</p>
-</div>
-<div class="content medium">
-    <p>rarely</p>
-</div>
-<div class="content medium">
-    <p>violate</p>
-</div>
 
-<div style="margin-top: 40px" class="content hard">
-    <p>abuse</p>
-</div>
-<div class="content hard">
-    <p>accumulation</p>
-</div>
-<div class="content hard">
-    <p>ambiguous</p>
-</div>
-<div class="content hard">
-    <p>cultivate</p>
-</div>
-<div class="content hard">
-    <p>dissolve</p>
-</div>
-<div class="content hard">
-    <p>exaggerate</p>
-</div>
-<div class="content hard">
-    <p>facility</p>
-</div>
-<div class="content hard">
-    <p>formerly</p>
-</div>
-<div class="content hard">
-    <p>fragile</p>
-</div>
-<div class="content hard">
-    <p>triumph</p>
-</div>
-<div class="content hard">
-    <p>variety</p>
-</div>
-<div class="content hard">
-    <p>vital</p>
-</div>
-
-<div style="margin-top: 40px" class="content extreme">
-    <p>abundance</p>
-</div>
-<div class="content extreme">
-    <p>alter</p>
-</div>
-<div class="content extreme">
-    <p>bizarre</p>
-</div>
-<div class="content extreme">
-    <p>constraint</p>
-</div>
-<div class="content extreme">
-    <p>deceptive</p>
-</div>
-<div class="content extreme">
-    <p>devastate</p>
-</div>
-<div class="content extreme">
-    <p>excavate</p>
-</div>
-<div class="content extreme">
-    <p>fiercely</p>
-</div>
-<div class="content extreme">
-    <p>inherit</p>
-</div>
-<div class="content extreme">
-    <p>magnify</p>
-</div>
-<div class="content extreme">
-    <p>nourish</p>
-</div>
-<div class="content extreme">
-    <p>quarrel</p>
 </div>
 
 <footer class="footer">

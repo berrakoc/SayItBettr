@@ -2,17 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Euclid', sans-serif;
-
+    font-family: "Lexend Deca", serif;
 }
-@font-face {
-    font-family: 'Euclid';
-    src: url('/static/font/Euclid Circular A Medium.ttf') format('truetype');
-}
-
-
 body {
-    font-family: 'Euclid', sans-serif;
     background-color: #31363f;
     display: flex;
     justify-content: center;

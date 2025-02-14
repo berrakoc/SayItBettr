@@ -1,16 +1,22 @@
-function handleButtonClick(button) {
-    const buttons = document.querySelectorAll('.buttons-container button');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-}
+function fetchWords(level) {
+    fetch(`http://localhost:8080/word/level/${level}`)
+        .then(response => response.json())
+        .then(data => {
+            const wordListDiv = document.getElementById("wordList");
+            wordListDiv.innerHTML = "";
 
+            data.forEach(word => {
+                const wordDiv = document.createElement("div");
+                wordDiv.classList.add("content");
 
-function handleButtonClick(level) {
-    // Hide all content divs
-    const contents = document.querySelectorAll('.content');
-    contents.forEach(content => content.style.display = 'none');
+                if (level === 1) wordDiv.classList.add("easy");
+                else if (level === 2) wordDiv.classList.add("medium");
+                else if (level === 3) wordDiv.classList.add("hard");
+                else if (level === 4) wordDiv.classList.add("extreme");
 
-    // Show the selected level's content
-    const selectedContents = document.querySelectorAll(`.content.${level}`);
-    selectedContents.forEach(content => content.style.display = 'block');
+                wordDiv.textContent = `${word.title}`;
+                wordListDiv.appendChild(wordDiv);
+            });
+        })
+        .catch(error => console.error("Error fetching words:", error));
 }
