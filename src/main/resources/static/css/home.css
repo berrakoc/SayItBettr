@@ -1,18 +1,11 @@
-@font-face {
-    font-family: 'Euclid';
-    src: url('/static/font/Euclid Circular A Medium.ttf') format('truetype');
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Euclid', sans-serif;
-
+    font-family: "Lexend Deca", serif;
 }
 
 body {
-    font-family: 'Euclid', sans-serif;
     background-color: #31363F;
     display: flex;
     flex-direction: column;
@@ -21,6 +14,9 @@ body {
 
 }
 
+.main{
+    flex:1;
+}
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -80,7 +76,6 @@ body {
 
 
 .content {
-    display: none;
     width: 700px;
     height: 50px;
     font-size: 1.5rem;
@@ -107,6 +102,12 @@ body {
     background-color: #f0d6f0;
 }
 
+.word-list {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 
 .footer {
