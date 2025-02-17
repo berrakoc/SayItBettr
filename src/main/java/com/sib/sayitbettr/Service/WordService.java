@@ -2,9 +2,11 @@ package com.sib.sayitbettr.Service;
 
 import com.sib.sayitbettr.Model.Word;
 import com.sib.sayitbettr.Repository.WordRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WordService {
@@ -18,5 +20,13 @@ public class WordService {
     public List<Word> getWordsByLevel(int level) {
         return wordRepository.findByLevel(level);
     }
+
+    public Word getWordById(Long id) {
+        return wordRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Kelime bulunamadı!"));
+    }
+
+
+
 }
 

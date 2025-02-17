@@ -2,6 +2,7 @@ package com.sib.sayitbettr.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+    @Getter //bu neden var anlamadım ama silmeye korktum
     @Column(name="title")
     private String title;
 
@@ -47,6 +48,7 @@ public class Word {
     @Column(name = "tarih")
     private LocalDate tarih;
 
+    public Long getId() {return id;}
     public String getTitle() { return title; }
     public int getLevel() { return level; }
     public String getPhonetic() { return phonetic; }
@@ -54,8 +56,6 @@ public class Word {
     public String getPronunciation() { return pronunciation; }
     public String getWordType() { return wordType; }
     public LocalDate getTarih() { return tarih; }
-
-
 
 }
 

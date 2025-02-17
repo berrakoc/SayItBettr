@@ -11,8 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/word.css" />
-    <link rel="stylesheet" href="/css/word.css" />
-    <title>Document</title>
+    <title th:text="'Kelime: ' + ${word.title}"></title>
 </head>
 
 <body>
@@ -20,29 +19,31 @@
     <a href="#">SayItBettr</a>
     <div class="navbar-icons">
         <i class="fas fa-info-circle"></i>
-
         <i class="fas fa-user-circle"></i>
     </div>
 </div>
 
 <div class="card">
-    <h2>Acknowledge</h2>
+    <h2 th:text="${word.title}">Acknowledge</h2>
     <div class="details">
         <p style="color: #c4c4c4">
             <strong>Phonetic: </strong>
-            <span style="color: #6b6a6a"> /ˈfəʊ.nɛ.tɪk/ </span>
+            <span style="color: #6b6a6a" th:text="${word.phonetic}">/ˈfəʊ.nɛ.tɪk/</span>
         </p>
         <p style="color: #c4c4c4">
             <strong>Meaning: </strong>
-            <span style="color: #6b6a6a">
-            To admit the existence or truth of.
-          </span>
+            <span style="color: #6b6a6a" th:text="${word.meaning}">
+                    To admit the existence or truth of.
+                </span>
         </p>
     </div>
+
+    <!-- Kelimenin sesli telaffuzunu ekleyin -->
     <audio controls class="audio-player">
-        <source src="example.mp3" type="audio/mpeg" />
+        <source th:src="@{${word.pronunciation}}" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
+
     <p class="record-label">Şimdi Sen Kaydet</p>
     <div class="record-controls">
         <button id="record">Record</button>
@@ -66,4 +67,3 @@
 <script src="/js/word.js"></script>
 </body>
 </html>
-
