@@ -32,4 +32,8 @@ public class User {
     @JsonProperty("password")
     @Column(name = "password")
     private String password;
+
+    public Long getId() {
+        return id;
+    }
 }
