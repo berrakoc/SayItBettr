@@ -16,14 +16,14 @@ function fetchWords(level) {
                 else if (level === 3) wordDiv.classList.add("hard");
                 else if (level === 4) wordDiv.classList.add("extreme");
 
-                wordDiv.textContent = `${word.title}`;
+                wordDiv.textContent = word.title;
 
                 wordDiv.addEventListener("click", function () {
                     if (!word.id) {
                         console.error("Kelimenin ID'si bulunamadı!");
                         return;
                     }
-                    window.location.href = `/word/${word.id}`;
+                    window.location.href = `http://localhost:8080/word-detail?id=${word.id}`;
                 });
 
                 wordListDiv.appendChild(wordDiv);
