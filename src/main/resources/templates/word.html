@@ -24,23 +24,23 @@
 </div>
 
 <div class="card">
-    <h2 th:text="${word.title}">Acknowledge</h2>
+    <h2 id="word-name">Acknowledge</h2>
     <div class="details">
         <p style="color: #c4c4c4">
             <strong>Phonetic: </strong>
-            <span style="color: #6b6a6a" th:text="${word.phonetic}">/ˈfəʊ.nɛ.tɪk/</span>
+            <span style="color: #6b6a6a" id="word-phonetic">/ˈfəʊ.nɛ.tɪk/</span>
         </p>
         <p style="color: #c4c4c4">
             <strong>Meaning: </strong>
-            <span style="color: #6b6a6a" th:text="${word.meaning}">
+            <span style="color: #6b6a6a" id="word-meaning">
                     To admit the existence or truth of.
                 </span>
         </p>
     </div>
 
     <!-- Kelimenin sesli telaffuzunu ekleyin -->
-    <audio controls class="audio-player">
-        <source th:src="@{${word.pronunciation}}" type="audio/mpeg" />
+    <audio controls id="word-audio" class="audio-player">
+        <source id="word-pronunciation" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
 
