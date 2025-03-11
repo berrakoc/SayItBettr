@@ -1,4 +1,28 @@
-let currentWordName="word_name"
+let currentWordName=""
+let currentWordPronunciation=""
+async function fetchWordDetail() {
+    const params = new URLSearchParams(window.location.search);
+    const wordId = params.get('id');
+
+    if (!wordId) return;
+
+    const response = await fetch(`http://localhost:8080/word/${wordId}`);
+    const word = await response.json();
+
+    document.getElementById('word-name').textContent = word.title;
+    document.getElementById('word-phonetic').textContent = word.phonetic;
+    document.getElementById('word-meaning').textContent = word.meaning;
+
+    currentWordName=word.title;
+    currentWordPronunciation=word.pronunciation;
+
+    const audioElement = document.getElementById("word-audio");
+    audioElement.src = word.pronunciation;
+    audioElement.load();
+}
+
+fetchWordDetail();
+
 // Kullanıcı ID'sini almak için fonksiyon
 async function getUserId() {
     try {
@@ -15,39 +39,6 @@ async function getUserId() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // URLden id  al
-    const urlParams = new URLSearchParams(window.location.search);
-    const wordId = urlParams.get("id");
-
-    if (wordId) {
-        // APIden kelime detaylarını alınıyor
-        fetch(`http://localhost:8080/word/${wordId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(word => {
-                // kelime başlığını, fonetiğini ve anlamını güncelle
-                document.querySelector(".card h2").textContent = word.title;
-                document.querySelector(".details p:nth-child(1) span").textContent = word.phonetic;
-                document.querySelector(".details p:nth-child(2) span").textContent = word.meaning;
-
-                // Global değişkene kelime adını ata
-                currentWordName = word.title;
-
-                // ses dosyasını güncelle
-                const audioPlayer = document.querySelector(".audio-player source");
-                audioPlayer.src = word.pronunciation;
-                document.querySelector(".audio-player").load();
-            })
-            .catch(error => {
-                alert("Kelime bilgileri yüklenirken bir hata oluştu.");
-            });
-    } else {
-        alert("Kelime ID'si URL parametrelerinde bulunamadı.");
-    }
 
     // ses kaydını başlat
     const recordButton = document.getElementById("record");
@@ -95,10 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         return;
                     }
 
-                    if (!currentWordName) {
-                        alert("Kelime adı alınamadı.");
-                        return;
-                    }
 
                     const formData = new FormData();
                     formData.append("audioFile", audioBlob, `${userId}_${currentWordName}.wav`);
@@ -133,8 +120,45 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // compare'e tıklanıldığında accuracy göster
-    compareButton.onclick = () => {
-        const accuracy = Math.floor(Math.random() * 100); // simülasyon
-        document.querySelector("h2").textContent = `Accuracy: ${accuracy}%`;
+    compareButton.onclick = async () => {
+        if (!userAudio.src || userAudio.src === "") {
+            alert("Lütfen önce bir kayıt yapın.");
+            return;
+        }
+
+        try {
+
+
+            // Kullanıcı ses kaydını blob olarak al
+            const response = await fetch(userAudio.src);
+            const userAudioBlob = await response.blob();
+
+            // Orijinal ses dosyasını blob olarak al
+            const pronunciationResponse = await fetch(currentWordPronunciation);
+            const pronunciationBlob = await pronunciationResponse.blob();
+
+            console.log("User Audio Blob:", userAudioBlob);
+            console.log("Pronunciation Audio Blob:", pronunciationBlob);
+
+            // FormData oluştur
+            const formData = new FormData();
+            formData.append("file1", pronunciationBlob); // API'den gelen orijinal telaffuz dosyası
+            formData.append("file2", userAudioBlob);
+            console.log(formData);
+            // Flask API'ye isteği yap
+            const flaskResponse = await fetch("http://localhost:8080/voice/compare", {
+                method: "POST",
+                body: formData
+            });
+
+            const result = await flaskResponse.text();
+
+            // Sonucu ekrana yazdır
+            document.querySelector("h2").textContent = `Accuracy: ${result}%`;
+        } catch (error) {
+            console.error("Ses karşılaştırma hatası:", error);
+            alert("Ses karşılaştırma sırasında bir hata oluştu.");
+        }
     };
+
 });

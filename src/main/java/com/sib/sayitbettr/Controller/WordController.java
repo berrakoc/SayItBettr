@@ -3,13 +3,14 @@ package com.sib.sayitbettr.Controller;
 import com.sib.sayitbettr.Model.Word;
 import com.sib.sayitbettr.Service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller // @RestController değil!
+@RestController
 @RequestMapping("/word")
 public class WordController {
 
@@ -27,11 +28,15 @@ public class WordController {
         return wordService.getWordsByLevel(level);
     }
 
-    // IDye göre sıralıyor ve word.html sayfasına yönlendiriyor
     @GetMapping("/{id}")
-    public String getWordById(@PathVariable Long id, Model model) {
+    public ResponseEntity<Word> getWordById(@PathVariable Long id) {
         Word word = wordService.getWordById(id);
-        model.addAttribute("word", word); // Thymeleaf
-        return "word"; // word.html döndür
+
+        if (word != null) {
+            return ResponseEntity.ok(word);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }

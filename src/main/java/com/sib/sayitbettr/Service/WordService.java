@@ -22,8 +22,7 @@ public class WordService {
     }
 
     public Word getWordById(Long id) {
-        return wordRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Kelime bulunamadı!"));
+        return wordRepository.findById(id).orElse(null);
     }
 
 
