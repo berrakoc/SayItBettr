@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface WordRepository extends JpaRepository<Word, Long> {
     List<Word> findByLevel(int level);
-    Optional<Word> findById(Long id);
-
-
 }
