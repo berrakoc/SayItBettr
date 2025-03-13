@@ -102,7 +102,7 @@ def compare_audio():
 
     similarity = compare_voices(file1_path, file2_path)
 
-    return jsonify({'similarity': f'{similarity:.2f}%'})
+    return jsonify(f'{similarity:.2f}%')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
