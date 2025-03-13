@@ -11,5 +11,8 @@
         <naming-strategy-map />
       </configuration>
     </facet>
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.12" />
+    </facet>
   </component>
 </module>
