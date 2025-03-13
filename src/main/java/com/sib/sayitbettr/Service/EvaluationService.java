@@ -24,21 +24,19 @@ public class EvaluationService {
         this.wordRepository = wordRepository;
     }
 
-    public Evaluation saveEvaluation(Long userId, Long wordId, String pronunciation, double accuracy, int score) {
-        Optional<User> userOpt = userRepository.findById(userId);
-        Optional<Word> wordOpt = wordRepository.findById(wordId);
-
-        if (userOpt.isEmpty() || wordOpt.isEmpty()) {
-            throw new RuntimeException("User veya Word bulunamadı.");
-        }
+    public Evaluation saveEvaluation(Long userId, Long wordId, String pronunciation, double accuracy, int score, LocalDateTime date) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        Word word = wordRepository.findById(wordId)
+                .orElseThrow(() -> new RuntimeException("Word not found"));
 
         Evaluation evaluation = new Evaluation();
-        evaluation.setUser(userOpt.get());
-        evaluation.setWord(wordOpt.get());
+        evaluation.setUser(user);
+        evaluation.setWord(word);
         evaluation.setPronunciation(pronunciation);
         evaluation.setAccuracy(accuracy);
-        evaluation.setDate(LocalDateTime.now());
         evaluation.setScore(score);
+        evaluation.setDate(date);
 
         return evaluationRepository.save(evaluation);
     }

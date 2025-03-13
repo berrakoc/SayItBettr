@@ -1,9 +1,13 @@
 let currentWordName=""
 let currentWordPronunciation=""
+let currentWordId=""
+let userWordPronunciation=""
+let userId=""
+
 async function fetchWordDetail() {
     const params = new URLSearchParams(window.location.search);
     const wordId = params.get('id');
-
+    currentWordId=wordId;
     if (!wordId) return;
 
     const response = await fetch(`http://localhost:8080/word/${wordId}`);
@@ -31,12 +35,62 @@ async function getUserId() {
             throw new Error("Kullanıcı giriş yapmamış.");
         }
         const userData = await response.json();
-        return userData.id; // Kullanıcının ID'sini döndür
+        userId=userData.id;
+        return userData.id;
     } catch (error) {
         console.error("Kullanıcı ID alınamadı:", error);
-        return null; // Hata durumunda null dön
+        return null;
     }
 }
+
+
+async function evaluateAndSave(result) {
+    const cleanedResult = result.replace(/[^\d.-]/g, '');
+    const wordAccuracy = parseFloat(cleanedResult);
+    const wordId = currentWordId;
+    const pronunciation = `uploads/${userWordPronunciation}`;
+
+    let coefficient;
+
+    if (wordId < 13) {
+        coefficient = 0.3;
+    } else if (wordId < 25) {
+        coefficient = 0.5;
+    } else if (wordId < 37) {
+        coefficient = 0.7;
+    } else {
+        coefficient = 0.9;
+    }
+
+    const wordScore = Math.round(wordAccuracy * coefficient);
+
+    const userData = {
+        userId: userId,  // Tanımlı olduğundan emin ol
+        wordId: wordId,
+        pronunciation: pronunciation,
+        accuracy: wordAccuracy,
+        score: wordScore,
+        date: new Date().toISOString() // ISO 8601 formatında tarih
+    };
+
+    fetch("http://localhost:8080/evaluation/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Evaluation saved:", data);
+        })
+        .catch(error => {
+            console.error("Error saving evaluation:", error);
+        });
+}
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -61,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
             mediaRecorder.onstop = () => {
                 const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
                 const audioUrl = URL.createObjectURL(audioBlob);
+                console.log(audioUrl);
                 userAudio.src = audioUrl;
             };
 
@@ -79,14 +134,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 mediaRecorder.onstop = async () => {
                     const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-
-                    const userId = await getUserId();  // Kullanıcı ID'yi API'den al
+                    console.log(audioBlob);
+                    const userId = await getUserId();
                     if (!userId) {
                         alert("Kullanıcı kimliği alınamadı. Lütfen giriş yapın.");
                         return;
                     }
 
-
+                    userWordPronunciation=`${userId}_${currentWordName}.wav`
                     const formData = new FormData();
                     formData.append("audioFile", audioBlob, `${userId}_${currentWordName}.wav`);
                     formData.append("userId", userId);
@@ -127,8 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-
-
             // Kullanıcı ses kaydını blob olarak al
             const response = await fetch(userAudio.src);
             const userAudioBlob = await response.blob();
@@ -152,9 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const result = await flaskResponse.text();
-
             // Sonucu ekrana yazdır
-            document.querySelector("h2").textContent = `Accuracy: ${result}%`;
+            document.getElementById("result").textContent = result.replace('%', '');
+            return evaluateAndSave(result.replace('%', ''));
         } catch (error) {
             console.error("Ses karşılaştırma hatası:", error);
             alert("Ses karşılaştırma sırasında bir hata oluştu.");
