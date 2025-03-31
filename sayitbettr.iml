@@ -12,7 +12,7 @@
       </configuration>
     </facet>
     <facet type="Python" name="Python">
-      <configuration sdkName="Python 3.12" />
+      <configuration sdkName="Python 3.12 (HelloWorld)" />
     </facet>
   </component>
 </module>

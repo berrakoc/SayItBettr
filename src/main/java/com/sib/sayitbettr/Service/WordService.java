@@ -25,7 +25,13 @@ public class WordService {
         return wordRepository.findById(id).orElse(null);
     }
 
+    public Long countTotalWords() {
+        return wordRepository.countTotalWords();
+    }
 
+    public Long countWordsByLevel(int level) {
+        return wordRepository.countWordsByLevel(level);
+    }
 
 }
 
