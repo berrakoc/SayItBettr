@@ -39,4 +39,13 @@ public class WordController {
         }
     }
 
+    @GetMapping("/count") //toplam kelime sayısı
+    public ResponseEntity<Long> getTotalWordsCount() {
+        return ResponseEntity.ok(wordService.countTotalWords());
+    }
+
+    @GetMapping("/level/{level}/count") //kelimeleri seviyelerine göre gruplama
+    public ResponseEntity<Long> getWordsCountByLevel(@PathVariable int level) {
+        return ResponseEntity.ok(wordService.countWordsByLevel(level));
+    }
 }
