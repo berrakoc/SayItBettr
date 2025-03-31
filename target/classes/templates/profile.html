@@ -18,7 +18,7 @@
 <body>
 
 <div class="navbar">
-    <a href="#">SayItBettr</a>
+    <a href="/home">SayItBettr</a>
     <div class="navbar-icons">
         <i class="fas fa-info-circle"></i>
 
@@ -157,12 +157,12 @@
 
         <div class="rank">
             <p class="rank-title">Rank</p>
-            <p class="rank-number">#475</p>
+            <p id="user-rank" class="rank-number"></p>
         </div>
 
         <div class="score">
             <p class="score-title">Score</p>
-            <p class="score-number">240 pts.</p>
+            <p id="user-score" class="score-number"></p>
         </div>
 
     </div>
@@ -178,7 +178,7 @@
         <div class="profile-image">
             <img src="/img/emre.JPG" alt="Kullanıcı Görseli">
         </div>
-        <p class="username">#crazyboy_nazilli</p>
+        <p id="user-name" class="username"></p>
     </div>
 
 
@@ -190,7 +190,8 @@
         <div class="progress-container">
             <div class="progress-header">
                 <span class="progress-label">Easy</span>
-                <span class="progress-value-s">44/78</span>
+                <span id="solved-word-level-1" class="progress-value-s"></span>
+                <span id="total-word-level-1" class="progress-value-s"></span>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: 56%;"></div>
@@ -201,7 +202,9 @@
         <div class="progress-container">
             <div class="progress-header">
                 <span class="progress-label">Medium</span>
-                <span class="progress-value-s">64/123</span>
+                <span id="solved-word-level-2" class="progress-value-s"></span>
+                <span id="total-word-level-2" class="progress-value-s"></span>
+
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: 52%;"></div>
@@ -212,7 +215,8 @@
         <div class="progress-container">
             <div class="progress-header">
                 <span class="progress-label">Hard</span>
-                <span class="progress-value-s">33/50</span>
+                <span id="solved-word-level-3" class="progress-value-s"></span>
+                <span id="total-word-level-3"class="progress-value-s" ></span>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: 66%;"></div>
@@ -223,10 +227,12 @@
         <div class="progress-container">
             <div class="progress-header">
                 <span class="progress-label">Extreme</span>
-                <span class="progress-value-s">44/78</span>
+
+                <span id="solved-word-level-4" class="progress-value-s"></span>
+                <span id="total-word-level-4" class="progress-value-s"></span>
             </div>
             <div class="progress-bar">
-                <div class="progress-fill" style="width: 56%;"></div>
+                <div id="progress-fill-4" class="progress-fill" style="width: 56%;"></div>
             </div>
         </div>
     </div>
@@ -237,9 +243,9 @@
 
     <div class="general-graph">
         <div class="circle-progress">
-            <span class="progress-value">38</span>
+            <span id="solved-words" class="progress-value"></span>
         </div>
-        <p class="progress-label">Solved</p>
+        <p  class="progress-label">Solved</p>
     </div>
 
 
@@ -248,11 +254,6 @@
     <div class="history">
         <p class="history-title">Last Submitted</p>
         <div class="history-entries">
-            <h5 class="history-item">Acknowledge →  68% Accuracy</h5>
-            <h5 class="history-item">Desire →   72% Accuracy</h5>
-            <h5 class="history-item">Progress →    64% Accuracy</h5>
-            <h5 class="history-item">Situation →   81% Accuracy</h5>
-            <h5 class="history-item">Conclusion →   76% Accuracy</h5>
         </div>
     </div>
 
@@ -268,5 +269,5 @@
     </div>
 </footer>
 </body>
-
+<script src="/js/profile.js" ></script>
 </html>
